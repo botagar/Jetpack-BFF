@@ -1,0 +1,17 @@
+{
+  "name": "jetpack-web-bff",
+  "version": "1.0.0",
+  "description": "Test GraphQL BFF",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt Newman <mdjnewman@gmail.com> (http://mdjnewman.me/)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-graphql": "^0.6.1",
+    "express-session": "^1.14.2",
+    "graphql": "^0.8.2"
+  }
+}
