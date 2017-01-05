@@ -4,7 +4,8 @@
   "description": "Test GraphQL BFF",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node app.js"
   },
   "author": "Matt Newman <mdjnewman@gmail.com> (http://mdjnewman.me/)",
   "license": "ISC",

@@ -59,6 +59,8 @@ var queryType = new graphql.GraphQLObjectType({
     }
 });
 
+const port = 8081;
+
 express()
     .use('/', graphqlHTTP({
         schema: new graphql.GraphQLSchema({
@@ -66,6 +68,6 @@ express()
         }),
         graphiql: true
     }))
-    .listen(8080, function (err) {
-        console.log('GraphQL Server is now running on localhost:8080');
+    .listen(port, function (err) {
+        console.log(`GraphQL Server is now running on localhost:${port}`);
     });
