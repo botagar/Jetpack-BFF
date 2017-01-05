@@ -1,0 +1,46 @@
+---
+- name: Deploy app to dev host
+  hosts: all
+  become_user: root
+
+  vars:
+      - destination: "/home/{{ ansible_user_id }}/bff"
+      - supervisord_program_name: "jetpack-bff"
+      - git_archive_file: "bff.tar.gz"
+
+  tasks:
+    - name: Ensure directories exist
+      file:
+        path: "{{ destination }}/log"
+        state: directory
+
+    - name: Copy app
+      unarchive:
+        src: "{{ archive_file }}"
+        dest: "{{ destination }}/app"
+
+    - name: Install dependencies
+      command: "npm install"
+      args:
+        chdir: "{{ destination }}/app"
+
+    - name: Generate & copy supervisord config
+      template:
+        src: supervisord.conf
+        dest: "{{ destination }}"
+
+    - name: Move supervisord config as superuser
+      command: mv "{{ destination }}/supervisord.conf" "/etc/supervisord.d/{{ supervisord_program_name }}.ini"
+      become: true
+
+    - name: supervisorctl reread
+      command: supervisorctl reread
+      become: true
+
+    - name: supervisorctl update
+      command: supervisorctl update
+      become: true
+
+    - name: Restart app
+      command: supervisorctl restart {{ supervisord_program_name }}
+      become: true
