@@ -2,7 +2,7 @@ const express = require('express')
 const graphqlHTTP = require('express-graphql');
 const graphql = require('graphql');
 
-var TODOs = [
+const TODOs = [
     {
         "id": 2739542,
         "title": "Read emails",
@@ -15,7 +15,7 @@ var TODOs = [
     }
 ];
 
-var TodoType = new graphql.GraphQLObjectType({
+const TodoType = new graphql.GraphQLObjectType({
     name: 'todo',
     fields: function () {
         return {
@@ -32,7 +32,7 @@ var TodoType = new graphql.GraphQLObjectType({
     }
 });
 
-var queryType = new graphql.GraphQLObjectType({
+const queryType = new graphql.GraphQLObjectType({
     name: 'Query',
     fields: function () {
         return {
