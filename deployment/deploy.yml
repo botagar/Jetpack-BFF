@@ -9,9 +9,14 @@
       - git_archive_file: "bff.tar.gz"
 
   tasks:
-    - name: Ensure directories exist
+    - name: Ensure logging directory exists
       file:
         path: "{{ destination }}/log"
+        state: directory
+
+    - name: Ensure app directory exists
+      file:
+        path: "{{ destination }}/app"
         state: directory
 
     - name: Copy app
