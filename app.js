@@ -1,6 +1,9 @@
 const express = require('express')
 const graphqlHTTP = require('express-graphql');
 const graphql = require('graphql');
+const cors = require('cors');
+
+const ItemType = require('./ItemType');
 
 const TODOs = [
     {
@@ -12,6 +15,17 @@ const TODOs = [
         "id": 2740883,
         "title": "Buy orange",
         "completed": true
+    }
+];
+
+const ITEMs = [
+    {
+        "name": "jetpack",
+        "price": 100
+    },
+    {
+        "name": "jetpack v2",
+        "price": 200
     }
 ];
 
@@ -42,6 +56,12 @@ const queryType = new graphql.GraphQLObjectType({
                     return TODOs;
                 }
             },
+            items: {
+                type: new graphql.GraphQLList(ItemType),
+                resolve: function () {
+                    return ITEMs;
+                }
+            },
             todoById: {
                 type: TodoType,
                 args: {
@@ -62,7 +82,7 @@ const queryType = new graphql.GraphQLObjectType({
 const port = 8081;
 
 express()
-    .use('/', graphqlHTTP({
+    .use('/', cors(), graphqlHTTP({
         schema: new graphql.GraphQLSchema({
             query: queryType
         }),

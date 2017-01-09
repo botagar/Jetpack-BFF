@@ -10,6 +10,7 @@
   "author": "Matt Newman <mdjnewman@gmail.com> (http://mdjnewman.me/)",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
     "express-session": "^1.14.2",
